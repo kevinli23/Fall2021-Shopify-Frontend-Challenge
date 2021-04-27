@@ -8,10 +8,10 @@ const store = (set, get) => ({
 			...state,
 			nominations: [...state.nominations, nomination],
 		})),
-	removeNomination: (nomination) =>
+	removeNomination: (id) =>
 		set((state) => ({
 			...state,
-			nominations: state.nominations.filter((x) => x.imdbID != nomination.imdbID),
+			nominations: state.nominations.filter((x) => x.imdbID != id),
 		})),
 	clearNominations: () => set((state) => ({ ...state, nominations: [] })),
 });

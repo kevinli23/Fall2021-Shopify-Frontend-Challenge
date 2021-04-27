@@ -12,7 +12,6 @@ const LandingPage = () => {
 			maxH="80vh"
 			minH="80vh"
 		>
-			{/* <Image mb="20px" src="/shoppies-icon.png" /> */}
 			<Heading
 				bgGradient={`linear(to-l, ${COLORS.darkgreen},${COLORS.green})`}
 				bgClip="text"

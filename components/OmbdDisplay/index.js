@@ -29,6 +29,7 @@ const OmbdDisplay = () => {
 				setMovies([]);
 				var page = 1;
 				var moviesAcc = [];
+				var ids = [];
 				while (true) {
 					const response = await fetch(
 						`http://www.omdbapi.com/?s=${query}&type=movie&page=${page}&apikey=${process.env.NEXT_PUBLIC_API_KEY}`
@@ -38,7 +39,13 @@ const OmbdDisplay = () => {
 						break;
 					}
 					page += 1;
-					moviesAcc = moviesAcc.concat(data.Search);
+					for (var m in data.Search) {
+						var mov = data.Search[m];
+						if (!ids.includes(mov.imdbID)) {
+							moviesAcc.push(mov);
+							ids.push(mov.imdbID);
+						}
+					}
 				}
 				setMovies(moviesAcc);
 				setTotalResults(moviesAcc.length);

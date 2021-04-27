@@ -13,11 +13,14 @@ import {
 	HStack,
 	Fade,
 } from '@chakra-ui/react';
+import { DeleteIcon } from '@chakra-ui/icons';
 import { SiImdb } from 'react-icons/si';
 import { FcFilmReel } from 'react-icons/fc';
 import { MdDateRange } from 'react-icons/md';
 import { AiFillStar } from 'react-icons/ai';
 import { BsAward } from 'react-icons/bs';
+import { COLORS } from '../../utils/constants';
+import { useStore } from '../../utils/store';
 
 const NominationEntry = ({
 	Title,
@@ -30,6 +33,7 @@ const NominationEntry = ({
 	Rated,
 	imdbID,
 }) => {
+	const removeNomination = useStore((state) => state.removeNomination);
 	const [genres, setGenres] = useState([]);
 
 	useEffect(() => {
@@ -38,11 +42,41 @@ const NominationEntry = ({
 
 	return (
 		<Fade in={true}>
-			<Box minW="90%" maxW="90%" p="10px" m="5px" border="1px solid black">
-				<HStack alignItems="flex-start">
-					<Image w="100px" h="150px" src={Poster} />
+			<Box
+				minW="90%"
+				maxW="90%"
+				p="10px"
+				mt="20px"
+				mb="30px"
+				ml="10px"
+				borderWidth="1px"
+				borderRadius="lg"
+				borderColor={COLORS.darkgreen}
+				boxShadow="dark-lg"
+			>
+				<HStack position="relative" alignItems="flex-start">
+					<IconButton
+						position="absolute"
+						right="0"
+						top="0"
+						variant="outline"
+						aria-label="Delete Nomination"
+						alignSelf="flex-end"
+						icon={<DeleteIcon />}
+						onClick={() => removeNomination(imdbID)}
+					/>
+					<Image alignSelf="center" w="150px" h="225px" src={Poster} />
 					<Stack direction="column">
-						<Heading size="md">{Title}</Heading>
+						<HStack
+							maxW="80%"
+							verticalAlign="center"
+							textAlign="center"
+							minH="60px"
+							maxH="min-content"
+							mb="2px"
+						>
+							<Heading size="md">{Title}</Heading>
+						</HStack>
 						<Box mb="1">
 							<Wrap spacing="10px">
 								{genres.map((genre) => (
