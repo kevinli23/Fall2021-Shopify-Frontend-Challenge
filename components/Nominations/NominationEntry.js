@@ -11,7 +11,7 @@ import {
 	Heading,
 	Link,
 	HStack,
-	Fade,
+	Collapse,
 } from '@chakra-ui/react';
 import { DeleteIcon } from '@chakra-ui/icons';
 import { SiImdb } from 'react-icons/si';
@@ -20,7 +20,6 @@ import { MdDateRange } from 'react-icons/md';
 import { AiFillStar } from 'react-icons/ai';
 import { BsAward } from 'react-icons/bs';
 import { COLORS } from '../../utils/constants';
-import { useStore } from '../../utils/store';
 
 const NominationEntry = ({
 	Title,
@@ -32,16 +31,36 @@ const NominationEntry = ({
 	Genre,
 	Rated,
 	imdbID,
+	removeEntry,
 }) => {
-	const removeNomination = useStore((state) => state.removeNomination);
+	const [onLoad, setOnLoad] = useState(true);
+	const [removed, setRemoved] = useState(false);
 	const [genres, setGenres] = useState([]);
+
+	useEffect(() => {
+		if (removed) {
+			(async () => {
+				await new Promise((resolve) => setTimeout(resolve, 200));
+				removeEntry(imdbID);
+			})();
+		}
+	}, [removed]);
+
+	useEffect(() => {
+		(async () => {
+			await new Promise((resolve) => setTimeout(resolve, 50));
+			setOnLoad(false);
+		})();
+	}, []);
 
 	useEffect(() => {
 		if (Genre) setGenres(Genre.split(', '));
 	}, [Genre]);
 
+	console.log(Title, removed);
+
 	return (
-		<Fade in={true}>
+		<Collapse in={!removed && !onLoad} animateOpacity unmountOnExit={true}>
 			<Box
 				minW="90%"
 				maxW="90%"
@@ -63,7 +82,9 @@ const NominationEntry = ({
 						aria-label="Delete Nomination"
 						alignSelf="flex-end"
 						icon={<DeleteIcon />}
-						onClick={() => removeNomination(imdbID)}
+						onClick={() => {
+							setRemoved(true);
+						}}
 					/>
 					<Image alignSelf="center" w="150px" h="225px" src={Poster} />
 					<Stack direction="column">
@@ -121,7 +142,7 @@ const NominationEntry = ({
 					</Stack>
 				</HStack>
 			</Box>
-		</Fade>
+		</Collapse>
 	);
 };
 

@@ -61,11 +61,11 @@ const MovieEntry = ({ Title, Year, Type, imdbID, Poster }) => {
 				isDisabled={nominated || nominations.length === 5}
 				onClick={async (e) => {
 					e.stopPropagation();
+					setNominated(true);
 					const response = await fetch(
 						`https://www.omdbapi.com/?i=${imdbID}&apikey=${process.env.NEXT_PUBLIC_API_KEY}`
 					);
 					const d = await response.json();
-					setNominated(true);
 					addNomination(d);
 				}}
 			>

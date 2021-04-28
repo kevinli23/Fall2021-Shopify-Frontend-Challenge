@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const Nominations = () => {
 	// const clearNominations = useStore((state) => state.clearNominations);
 	const nominations = useStore((state) => state.nominations);
+	const removeNomination = useStore((state) => state.removeNomination);
 	const notify = () => toast.dark('Nominations complete! 🎉🎉🎉');
 
 	useEffect(() => {
@@ -29,8 +30,6 @@ const Nominations = () => {
 			minH="100vh"
 			minW="40vw"
 			pl="10px"
-			pt="10px"
-			mr="-17px"
 			maxH="100vh"
 			overflowX="hidden"
 			overflowY="hidden"
@@ -42,6 +41,7 @@ const Nominations = () => {
 				alignItems="center"
 				p="5px"
 				pl="10px"
+				ml="-10px"
 			>
 				{nominations.length !== 5 ? (
 					<Heading fontFamily="Roboto, sans-serif">{`Your Nominations (${nominations.length} / 5)`}</Heading>
@@ -52,7 +52,11 @@ const Nominations = () => {
 			<Box bg={COLORS.darkgreen} color="white" maxH="93vh" minH="93vh" minW="40vw">
 				<Box maxH="90vh" overflowY="scroll">
 					{nominations.map((nom) => (
-						<NominationEntry {...nom} />
+						<NominationEntry
+							key={nom.imdbID}
+							{...nom}
+							removeEntry={removeNomination}
+						/>
 					))}
 				</Box>
 			</Box>
