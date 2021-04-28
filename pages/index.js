@@ -13,8 +13,8 @@ export default function Home() {
 	return (
 		<div className={styles.container}>
 			<MovieModal />
-			<HStack overflowY="hidden" overflowX="hidden" spacing="20px">
-				<Box overflowY="hidden" bg="white" maxH="100vh" minH="100vh" minW="60vw">
+			<HStack spacing="20px">
+				<Box bg="white" maxH="100vh" minH="100vh" minW="60vw">
 					<Header />
 					<OmbdDisplay />
 				</Box>
