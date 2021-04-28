@@ -9,7 +9,8 @@ const addNomQuery = (state) => state.addNomination;
 const compareState = (oldNoms, newNoms, imdbID) => {
 	const case1 =
 		newNoms.length !== 5 &&
-		newNoms.filter((x) => x.imdbID === imdbID).length === 0;
+		newNoms.filter((x) => x.imdbID === imdbID).length === 0 &&
+		oldNoms.filter((x) => x.imdbID === imdbID).length === 0;
 	const case2 = oldNoms.length !== 5 && newNoms.length !== 5;
 
 	return case1 && case2;
