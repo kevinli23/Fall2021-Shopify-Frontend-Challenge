@@ -62,7 +62,7 @@ const MovieEntry = ({ Title, Year, Type, imdbID, Poster }) => {
 				onClick={async (e) => {
 					e.stopPropagation();
 					const response = await fetch(
-						`http://www.omdbapi.com/?i=${imdbID}&apikey=${process.env.NEXT_PUBLIC_API_KEY}`
+						`https://www.omdbapi.com/?i=${imdbID}&apikey=${process.env.NEXT_PUBLIC_API_KEY}`
 					);
 					const d = await response.json();
 					setNominated(true);

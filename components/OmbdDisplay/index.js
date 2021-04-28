@@ -32,7 +32,7 @@ const OmbdDisplay = () => {
 				var ids = [];
 				while (true) {
 					const response = await fetch(
-						`http://www.omdbapi.com/?s=${query}&type=movie&page=${page}&apikey=${process.env.NEXT_PUBLIC_API_KEY}`
+						`https://www.omdbapi.com/?s=${query}&type=movie&page=${page}&apikey=${process.env.NEXT_PUBLIC_API_KEY}`
 					);
 					const data = await response.json();
 					if (data.Response === 'False') {

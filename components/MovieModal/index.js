@@ -37,7 +37,7 @@ const MovieModal = () => {
 			setLoading(true);
 			(async () => {
 				const response = await fetch(
-					`http://www.omdbapi.com/?i=${imdbId}&apikey=${process.env.NEXT_PUBLIC_API_KEY}`
+					`https://www.omdbapi.com/?i=${imdbId}&apikey=${process.env.NEXT_PUBLIC_API_KEY}`
 				);
 				const d = await response.json();
 				setData(d);
