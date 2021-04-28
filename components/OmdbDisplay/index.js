@@ -12,6 +12,7 @@ const OmbdDisplay = () => {
 	const [loading, setLoading] = useState(false);
 	const [totalResults, setTotalResults] = useState(0);
 	const [displayPage, setPage] = useState(0);
+
 	const { query, sorting, setSorting } = useQueryStore();
 
 	useEffect(() => {
@@ -56,7 +57,7 @@ const OmbdDisplay = () => {
 
 	if (loading) {
 		return (
-			<Box minH="80vh" d="flex" justifyContent="center" alignItems="center">
+			<Box minW="100%" mt="40%">
 				<Loader
 					size="xl"
 					color={COLORS.green}
@@ -71,7 +72,7 @@ const OmbdDisplay = () => {
 		<>
 			{query && (
 				<Box display="flex" flexDir="row" alignItems="center">
-					<Text p="20px" pb="0px">
+					<Text p="10px" pl="20px" pb="0px" justifySelf="center">
 						{totalResults} search results for
 						<Link href={`https://www.google.com/search?q=${query}`} target="_blank">
 							<Text as="em"> {query}</Text>
@@ -79,7 +80,8 @@ const OmbdDisplay = () => {
 					</Text>
 					<Box flexGrow="1" />
 					<Select
-						w="30vw"
+						w="max-content"
+						mr="20px"
 						value={sorting}
 						onChange={(e) => setSorting(e.target.value)}
 						placeholder="Sort movies by"
@@ -92,7 +94,8 @@ const OmbdDisplay = () => {
 			{movies.length > 0 ? (
 				<Wrap
 					p="20px"
-					maxH="83vh"
+					h="90%"
+					maxH="90%"
 					overflowY="scroll"
 					mt="10px"
 					spacing="30px"

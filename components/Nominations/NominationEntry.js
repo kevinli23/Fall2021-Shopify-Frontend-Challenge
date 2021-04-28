@@ -60,8 +60,8 @@ const NominationEntry = ({ imdbID, Poster, Title, removeEntry }) => {
 	return (
 		<Collapse in={!removed && !onLoad} animateOpacity unmountOnExit={true}>
 			<Box
-				minW="90%"
-				maxW="90%"
+				minW="95%"
+				maxW="95%"
 				p="10px"
 				mt="20px"
 				mb="30px"

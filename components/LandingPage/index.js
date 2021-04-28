@@ -16,12 +16,12 @@ const LandingPage = () => {
 				bgGradient={`linear(to-l, ${COLORS.darkgreen},${COLORS.green})`}
 				bgClip="text"
 				as="h1"
-				size="4xl"
+				size="3xl"
 				fontFamily="Montserrat, sans-serif"
 			>
 				THE SHOPPIEs
 			</Heading>
-			<Heading fontFamily="Montserrat, sans-serif" as="h3" size="lg">
+			<Heading fontFamily="Montserrat, sans-serif" as="h3" size="md">
 				Movie awards for entrepreneurs
 			</Heading>
 			<Text mt="5">Enter a movie name in the search bar to get started</Text>

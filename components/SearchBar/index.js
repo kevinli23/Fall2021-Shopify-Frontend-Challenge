@@ -11,7 +11,14 @@ const SearchBar = () => {
 	const [query, setQuery] = useState('');
 
 	return (
-		<div style={{ width: '100%', padding: '20px', marginTop: '10px' }}>
+		<div
+			style={{
+				width: '92%',
+				minWidth: '92%',
+				padding: '10px',
+				marginTop: '10px',
+			}}
+		>
 			<InputGroup
 				onKeyDown={(e) => {
 					if (e.key === 'Enter') {
