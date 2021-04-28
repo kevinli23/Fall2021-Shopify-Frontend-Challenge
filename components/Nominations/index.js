@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { COLORS } from '../../utils/constants';
 import { useStore } from '../../utils/store';
@@ -11,6 +11,7 @@ import { toast } from 'react-toastify';
 const removeEntryQuery = (state) => state.removeNomination;
 
 const Nominations = () => {
+	const [headerColor, setHeaderColor] = useState(COLORS.darkgreen);
 	const nominations = useStore((state) => state.nominations);
 	const removeNomination = useStore(removeEntryQuery);
 	const notify = () => toast.dark('Nominations complete! 🎉🎉🎉');
@@ -18,6 +19,7 @@ const Nominations = () => {
 	useEffect(() => {
 		if (nominations.length === 5) {
 			notify();
+			setHeaderColor('blue.500');
 		}
 	}, [nominations]);
 
@@ -37,7 +39,7 @@ const Nominations = () => {
 				overflowY="hidden"
 			>
 				<Box
-					bg={nominations.length === 5 ? COLORS.blue : COLORS.darkgreen}
+					bg={headerColor}
 					maxH="7vh"
 					minH="7vh"
 					alignItems="center"
@@ -45,14 +47,11 @@ const Nominations = () => {
 					pl="10px"
 					ml="-10px"
 				>
-					{nominations.length !== 5 ? (
-						<Heading
-							p="5px"
-							fontFamily="Roboto, sans-serif"
-						>{`Your Nominations (${nominations.length} / 5)`}</Heading>
-					) : (
-						<Heading p="5px">Nominations Complete!</Heading>
-					)}
+					<Heading p="5px" fontFamily="Roboto, sans-serif">
+						{nominations.length !== 5
+							? `Your Nominations (${nominations.length} / 5)`
+							: 'Nominations Complete!'}
+					</Heading>
 				</Box>
 				<Box
 					bg={COLORS.darkgreen}

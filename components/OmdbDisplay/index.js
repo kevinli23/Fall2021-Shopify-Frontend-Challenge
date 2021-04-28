@@ -57,11 +57,18 @@ const OmbdDisplay = () => {
 
 	if (loading) {
 		return (
-			<Box minW="100%" mt="40%">
+			<Box
+				d="flex"
+				minW="100%"
+				h="100%"
+				minH="400px"
+				alignItems="center"
+				justifyContent="center"
+			>
 				<Loader
 					size="xl"
 					color={COLORS.green}
-					speed="0.2s"
+					speed="0.5s"
 					text={`Loading Page ${displayPage}`}
 				/>
 			</Box>
@@ -94,7 +101,6 @@ const OmbdDisplay = () => {
 			{movies.length > 0 ? (
 				<Wrap
 					p="20px"
-					h="90%"
 					maxH="90%"
 					overflowY="scroll"
 					mt="10px"

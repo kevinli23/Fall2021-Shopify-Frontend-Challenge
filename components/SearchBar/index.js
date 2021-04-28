@@ -33,7 +33,7 @@ const SearchBar = () => {
 				<Input
 					value={query}
 					onChange={(e) => setQuery(e.target.value)}
-					type="tel"
+					type="text"
 					placeholder="Search for a movie to nominate"
 				/>
 			</InputGroup>

@@ -71,7 +71,7 @@ const NominationEntry = ({ imdbID, Poster, Title, removeEntry }) => {
 				borderColor={COLORS.darkgreen}
 				boxShadow="dark-lg"
 			>
-				<HStack position="relative" alignItems="flex-start">
+				<HStack position="relative" spacing="10px" alignItems="flex-start">
 					<IconButton
 						position="absolute"
 						right="0"
@@ -84,7 +84,13 @@ const NominationEntry = ({ imdbID, Poster, Title, removeEntry }) => {
 							setRemoved(true);
 						}}
 					/>
-					<Image alignSelf="center" w="150px" h="225px" src={Poster} />
+					<Image
+						alignSelf="center"
+						w="150px"
+						h="225px"
+						style={{ marginRight: '5px' }}
+						src={Poster}
+					/>
 					<Stack direction="column">
 						<HStack
 							maxW="80%"

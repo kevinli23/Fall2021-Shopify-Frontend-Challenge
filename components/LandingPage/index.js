@@ -1,17 +1,24 @@
 import React from 'react';
-import { VStack, Heading, Text, Image } from '@chakra-ui/react';
+import {
+	VStack,
+	Heading,
+	Text,
+	Image,
+	useBreakpointValue,
+} from '@chakra-ui/react';
 import { COLORS } from '../../utils/constants';
 
 const LandingPage = () => {
+	const showImage = useBreakpointValue({ sm: false, lg: true });
 	return (
 		<VStack
 			fontFamily="Roboto, sans-serif"
 			alignItems="center"
 			justifyContent="center"
-			maxH="80vh"
-			minH="80vh"
+			maxH="100%"
+			minH="100%"
 		>
-			<Image src="/shoppies-icon.png" mb="20px" />
+			{showImage && <Image src="/shoppies-icon.png" mb="20px" />}
 			<Heading
 				bgGradient={`linear(to-l, ${COLORS.darkgreen},${COLORS.green})`}
 				bgClip="text"
