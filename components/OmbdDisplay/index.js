@@ -11,6 +11,7 @@ const OmbdDisplay = () => {
 	const [movies, setMovies] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [totalResults, setTotalResults] = useState(0);
+	const [displayPage, setPage] = useState(0);
 	const { query, sorting, setSorting } = useQueryStore();
 
 	useEffect(() => {
@@ -25,6 +26,7 @@ const OmbdDisplay = () => {
 			(async () => {
 				setLoading(true);
 				setMovies([]);
+				setPage(1);
 				var page = 1;
 				var moviesAcc = [];
 				var ids = [];
@@ -33,6 +35,7 @@ const OmbdDisplay = () => {
 					if (data.Response === 'False') {
 						break;
 					}
+					setPage(page + 1);
 					page += 1;
 					for (var m in data.Search) {
 						var mov = data.Search[m];
@@ -54,7 +57,12 @@ const OmbdDisplay = () => {
 	if (loading) {
 		return (
 			<Box minH="80vh" d="flex" justifyContent="center" alignItems="center">
-				<Loader size="xl" color={COLORS.green} spped="0.2s" />
+				<Loader
+					size="xl"
+					color={COLORS.green}
+					speed="0.2s"
+					text={`Loading Page ${displayPage}`}
+				/>
 			</Box>
 		);
 	}

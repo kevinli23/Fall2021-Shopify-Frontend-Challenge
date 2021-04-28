@@ -9,9 +9,11 @@ import NominationEntry from './NominationEntry';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+const removeEntryQuery = (state) => state.removeNomination;
+
 const Nominations = () => {
 	const nominations = useStore((state) => state.nominations);
-	const removeNomination = useStore((state) => state.removeNomination);
+	const removeNomination = useStore(removeEntryQuery);
 	const notify = () => toast.dark('Nominations complete! 🎉🎉🎉');
 
 	useEffect(() => {

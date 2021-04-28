@@ -81,7 +81,7 @@ const MovieEntry = ({ Title, Year, imdbID, Poster }) => {
 				onClick={async (e) => {
 					e.stopPropagation();
 					setNominated(true);
-					addNomination(await getMovieById(imdbID));
+					addNomination({ imdbID, Poster, Title });
 				}}
 			>
 				Nominate

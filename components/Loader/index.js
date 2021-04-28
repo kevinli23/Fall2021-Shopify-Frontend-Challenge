@@ -1,7 +1,13 @@
-import { Spinner } from '@chakra-ui/react';
+import { Spinner, Text, VStack } from '@chakra-ui/react';
 
 const Loader = (props) => {
-	return <Spinner {...props} />;
+	const { text } = props;
+	return (
+		<VStack>
+			<Spinner {...props} />
+			{text && <Text>{text}</Text>}
+		</VStack>
+	);
 };
 
 export default Loader;
