@@ -6,6 +6,9 @@ import Nominations from '../components/Nominations';
 import OmbdDisplay from '../components/OmbdDisplay';
 import MovieModal from '../components/MovieModal';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function Home() {
 	return (
 		<div className={styles.container}>
@@ -17,6 +20,7 @@ export default function Home() {
 				</Box>
 				<Nominations />
 			</HStack>
+			<ToastContainer autoClose={3000} />
 		</div>
 	);
 }

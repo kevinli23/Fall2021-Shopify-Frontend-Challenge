@@ -70,15 +70,14 @@ const NominationEntry = ({
 						<HStack
 							maxW="80%"
 							verticalAlign="center"
-							textAlign="center"
 							minH="60px"
 							maxH="min-content"
 							mb="2px"
 						>
 							<Heading size="md">{Title}</Heading>
 						</HStack>
-						<Box mb="1">
-							<Wrap spacing="10px">
+						<Box>
+							<Wrap spacing="15px">
 								{genres.map((genre) => (
 									<WrapItem key={genre}>
 										<Badge px="2" borderRadius="full" colorScheme="purple">
@@ -94,7 +93,7 @@ const NominationEntry = ({
 							</Wrap>
 						</Box>
 						<Stack direction="row" alignItems="center">
-							<Link href={`https://imdb.com/title/${imdbID}`} target="_blank">
+							<Link mt="2px" href={`https://imdb.com/title/${imdbID}`} target="_blank">
 								<IconButton
 									aria-label="IMDB link"
 									colorScheme="teal"
