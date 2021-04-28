@@ -30,6 +30,10 @@ const Nominations = () => {
 			minW="40vw"
 			pl="10px"
 			pt="10px"
+			mr="-17px"
+			maxH="100vh"
+			overflowX="hidden"
+			overflowY="hidden"
 		>
 			<Box
 				bg={nominations.length === 5 ? COLORS.blue : COLORS.darkgreen}
