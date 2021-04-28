@@ -6,7 +6,7 @@ const store = (set, get) => ({
 	addNomination: (nomination) =>
 		set((state) => ({
 			...state,
-			nominations: [...state.nominations, nomination],
+			nominations: [nomination, ...state.nominations],
 		})),
 	removeNomination: (id) =>
 		set((state) => ({
