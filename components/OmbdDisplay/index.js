@@ -4,7 +4,7 @@ import { Box, Text, Link, Wrap, WrapItem, Select } from '@chakra-ui/react';
 import { COLORS } from '../../utils/constants';
 import MovieEntry from './MovieEntry';
 import Loader from '../Loader';
-import { sortMovies } from '../../utils/helpers';
+import { sortMovies, getMovieBySearch } from '../../utils/helpers';
 import LandingPage from '../LandingPage';
 
 const OmbdDisplay = () => {
@@ -29,10 +29,7 @@ const OmbdDisplay = () => {
 				var moviesAcc = [];
 				var ids = [];
 				while (true) {
-					const response = await fetch(
-						`https://www.omdbapi.com/?s=${query}&type=movie&page=${page}&apikey=${process.env.NEXT_PUBLIC_API_KEY}`
-					);
-					const data = await response.json();
+					const data = await getMovieBySearch(query, page);
 					if (data.Response === 'False') {
 						break;
 					}
