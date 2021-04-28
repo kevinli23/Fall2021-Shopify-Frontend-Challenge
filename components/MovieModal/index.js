@@ -24,6 +24,7 @@ import { AiFillStar } from 'react-icons/ai';
 import { BsAward } from 'react-icons/bs';
 
 import { useModalStore } from '../../utils/store';
+import { getMovieById } from '../../utils/helpers';
 import Loader from '../Loader';
 
 const MovieModal = () => {
@@ -36,10 +37,7 @@ const MovieModal = () => {
 		if (imdbId) {
 			setLoading(true);
 			(async () => {
-				const response = await fetch(
-					`https://www.omdbapi.com/?i=${imdbId}&apikey=${process.env.NEXT_PUBLIC_API_KEY}`
-				);
-				const d = await response.json();
+				const d = await getMovieById(imdbId);
 				setData(d);
 				setGenres(d.Genre.split(', '));
 				setLoading(false);

@@ -20,7 +20,7 @@ export default function Home() {
 				</Box>
 				<Nominations />
 			</HStack>
-			<ToastContainer autoClose={3000} />
+			<ToastContainer autoClose={2000} />
 		</div>
 	);
 }

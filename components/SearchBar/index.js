@@ -4,8 +4,10 @@ import { Input, InputLeftElement, InputGroup } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
 import { useQueryStore } from '../../utils/store';
 
+const zustandSetQuery = (state) => state.setGlobalQuery;
+
 const SearchBar = () => {
-	const { setGlobalQuery } = useQueryStore();
+	const setGlobalQuery = useQueryStore(zustandSetQuery);
 	const [query, setQuery] = useState('');
 
 	return (

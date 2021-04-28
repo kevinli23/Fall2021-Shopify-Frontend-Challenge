@@ -6,11 +6,10 @@ import { useStore } from '../../utils/store';
 import { Box, Heading } from '@chakra-ui/react';
 import NominationEntry from './NominationEntry';
 
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Nominations = () => {
-	// const clearNominations = useStore((state) => state.clearNominations);
 	const nominations = useStore((state) => state.nominations);
 	const removeNomination = useStore((state) => state.removeNomination);
 	const notify = () => toast.dark('Nominations complete! 🎉🎉🎉');
@@ -44,9 +43,12 @@ const Nominations = () => {
 				ml="-10px"
 			>
 				{nominations.length !== 5 ? (
-					<Heading fontFamily="Roboto, sans-serif">{`Your Nominations (${nominations.length} / 5)`}</Heading>
+					<Heading
+						p="5px"
+						fontFamily="Roboto, sans-serif"
+					>{`Your Nominations (${nominations.length} / 5)`}</Heading>
 				) : (
-					<Heading>Nominations Complete!</Heading>
+					<Heading p="5px">Nominations Complete!</Heading>
 				)}
 			</Box>
 			<Box bg={COLORS.darkgreen} color="white" maxH="93vh" minH="93vh" minW="40vw">

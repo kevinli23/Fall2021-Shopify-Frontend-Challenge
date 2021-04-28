@@ -20,8 +20,6 @@ const OmbdDisplay = () => {
 		}
 	}, [sorting]);
 
-	console.log(movies, sorting);
-
 	useEffect(() => {
 		if (query) {
 			(async () => {
@@ -51,6 +49,8 @@ const OmbdDisplay = () => {
 				setTotalResults(moviesAcc.length);
 				setLoading(false);
 			})();
+		} else {
+			setMovies([]);
 		}
 	}, [query]);
 

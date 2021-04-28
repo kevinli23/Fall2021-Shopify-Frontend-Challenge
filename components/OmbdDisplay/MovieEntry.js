@@ -1,15 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Image, Button, Badge, Heading, Fade } from '@chakra-ui/react';
 import { useStore, useModalStore } from '../../utils/store';
-import { COLORS } from '../../utils/constants';
+import NominatedBanner from './NominatedBanner';
+import { getMovieById } from '../../utils/helpers';
 
-const MovieEntry = ({ Title, Year, Type, imdbID, Poster }) => {
-	const nominations = useStore((state) => state.nominations);
+const addNomQuery = (state) => state.addNomination;
+
+const compareState = (oldNoms, newNoms, imdbID) => {
+	const case1 =
+		newNoms.length !== 5 &&
+		newNoms.filter((x) => x.imdbID === imdbID).length === 0;
+	const case2 = oldNoms.length !== 5 && newNoms.length !== 5;
+
+	return case1 && case2;
+};
+
+const MovieEntry = ({ Title, Year, imdbID, Poster }) => {
+	const nominations = useStore(
+		(state) => state.nominations,
+		(oldNominations, newNominations) =>
+			compareState(oldNominations, newNominations, imdbID)
+	);
 	const { setId, setOpen } = useModalStore();
 
-	const addNomination = useStore((state) => state.addNomination);
+	const addNomination = useStore(addNomQuery);
 
 	const [nominated, setNominated] = useState(false);
+
+	console.log(`rerender ${Title}`);
 
 	useEffect(() => {
 		setNominated(nominations.filter((x) => x.imdbID === imdbID).length === 1);
@@ -62,34 +80,14 @@ const MovieEntry = ({ Title, Year, Type, imdbID, Poster }) => {
 				onClick={async (e) => {
 					e.stopPropagation();
 					setNominated(true);
-					const response = await fetch(
-						`https://www.omdbapi.com/?i=${imdbID}&apikey=${process.env.NEXT_PUBLIC_API_KEY}`
-					);
-					const d = await response.json();
-					addNomination(d);
+					addNomination(await getMovieById(imdbID));
 				}}
 			>
 				Nominate
 			</Button>
 
 			<Fade in={nominated}>
-				<Box
-					position="absolute"
-					w="100%"
-					p="5"
-					bg="#C60F0F"
-					left="0"
-					top="100px"
-					textAlign="center"
-					verticalAlign="center"
-					transform="skewY(-20deg)"
-					opcaity="0"
-					transition="opacity 0.5s ease-in-out"
-				>
-					<Heading size="xl" color={COLORS.green} fontFamily="Bungee, cursive">
-						Nominated!
-					</Heading>
-				</Box>
+				<NominatedBanner />
 			</Fade>
 		</Box>
 	);

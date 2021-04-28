@@ -48,7 +48,7 @@ const NominationEntry = ({
 
 	useEffect(() => {
 		(async () => {
-			await new Promise((resolve) => setTimeout(resolve, 50));
+			await new Promise((resolve) => setTimeout(resolve, 10));
 			setOnLoad(false);
 		})();
 	}, []);
@@ -56,8 +56,6 @@ const NominationEntry = ({
 	useEffect(() => {
 		if (Genre) setGenres(Genre.split(', '));
 	}, [Genre]);
-
-	console.log(Title, removed);
 
 	return (
 		<Collapse in={!removed && !onLoad} animateOpacity unmountOnExit={true}>
