@@ -61,7 +61,6 @@ const OmbdDisplay = () => {
 				d="flex"
 				minW="100%"
 				h="100%"
-				minH="400px"
 				alignItems="center"
 				justifyContent="center"
 			>

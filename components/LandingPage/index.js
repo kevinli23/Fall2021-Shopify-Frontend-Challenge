@@ -26,7 +26,7 @@ const LandingPage = () => {
 				size="3xl"
 				fontFamily="Montserrat, sans-serif"
 			>
-				THE SHOPPIEs
+				The Shoppies
 			</Heading>
 			<Heading fontFamily="Montserrat, sans-serif" as="h3" size="md">
 				Movie awards for entrepreneurs

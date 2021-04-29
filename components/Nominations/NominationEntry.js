@@ -33,7 +33,7 @@ const NominationEntry = ({ imdbID, Poster, Title, removeEntry }) => {
 	useEffect(() => {
 		if (removed) {
 			(async () => {
-				await new Promise((resolve) => setTimeout(resolve, 200));
+				await new Promise((resolve) => setTimeout(resolve, 150)); // To let the fade animation run
 				removeEntry(imdbID);
 			})();
 		}
@@ -41,7 +41,7 @@ const NominationEntry = ({ imdbID, Poster, Title, removeEntry }) => {
 
 	useEffect(() => {
 		(async () => {
-			await new Promise((resolve) => setTimeout(resolve, 10));
+			await new Promise((resolve) => setTimeout(resolve, 10)); // To let the fade animation occur
 			setOnLoad(false);
 		})();
 	}, []);

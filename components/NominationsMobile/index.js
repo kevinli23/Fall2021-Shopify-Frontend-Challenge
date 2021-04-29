@@ -24,7 +24,7 @@ const NominationsMobile = () => {
 	}, [nominations]);
 
 	return (
-		<VStack minW="100vw" p="10px" maxH="100%" bg={headerColor}>
+		<VStack minW="100vw" p="10px" minH="100%" maxH="100%" bg={headerColor}>
 			<Heading size="md" fontFamily="Roboto, sans-serif">
 				{nominations.length !== 5
 					? `Your Nominations (${nominations.length} / 5)`

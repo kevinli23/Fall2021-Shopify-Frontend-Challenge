@@ -40,8 +40,6 @@ const MovieEntry = ({ Title, Year, imdbID, Poster }) => {
 
 	const [nominated, setNominated] = useState(false);
 
-	console.log(`rerender ${Title}`);
-
 	useEffect(() => {
 		setNominated(nominations.filter((x) => x.imdbID === imdbID).length === 1);
 	}, [nominations]);
