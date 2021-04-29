@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
 import { useStore } from '../../utils/store';
-import { Box, Heading, Image, VStack, IconButton } from '@chakra-ui/react';
+import {
+	Box,
+	Heading,
+	Image,
+	VStack,
+	IconButton,
+	useBreakpointValue,
+} from '@chakra-ui/react';
 
 import { toast } from 'react-toastify';
 import { CgRemove } from 'react-icons/cg';
@@ -10,12 +17,13 @@ const removeEntryQuery = (state) => state.removeNomination;
 
 const NominationsMobile = () => {
 	const [headerColor, setHeaderColor] = useState('green.300');
+	const notifyMe = useBreakpointValue({ base: true, sm: true, lg: false });
 	const nominations = useStore((state) => state.nominations);
 	const removeNomination = useStore(removeEntryQuery);
 	const notify = () => toast.dark('Nominations complete! 🎉🎉🎉');
 
 	useEffect(() => {
-		if (nominations.length === 5) {
+		if (nominations.length === 5 && notifyMe) {
 			notify();
 			setHeaderColor('blue.500');
 		} else {
