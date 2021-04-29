@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Image, Button, Badge, Heading, Fade } from '@chakra-ui/react';
+import {
+	Box,
+	Image,
+	Button,
+	Badge,
+	useBreakpointValue,
+	Fade,
+} from '@chakra-ui/react';
 import { useStore, useModalStore } from '../../utils/store';
 import NominatedBanner from './NominatedBanner';
-import { getMovieById } from '../../utils/helpers';
 
 const addNomQuery = (state) => state.addNomination;
 
@@ -17,6 +23,12 @@ const compareState = (oldNoms, newNoms, imdbID) => {
 };
 
 const MovieEntry = ({ Title, Year, imdbID, Poster }) => {
+	const showExtra = useBreakpointValue({
+		base: false,
+		sm: false,
+		md: true,
+		lg: true,
+	});
 	const nominations = useStore(
 		(state) => state.nominations,
 		(oldNominations, newNominations) =>
@@ -52,8 +64,10 @@ const MovieEntry = ({ Title, Year, imdbID, Poster }) => {
 			as="button"
 			_hover={{ boxShadow: 'dark-lg' }}
 			onClick={() => {
-				setId(imdbID);
-				setOpen(true);
+				if (showExtra) {
+					setId(imdbID);
+					setOpen(true);
+				}
 			}}
 		>
 			<Image

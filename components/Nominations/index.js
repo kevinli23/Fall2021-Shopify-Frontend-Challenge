@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 const removeEntryQuery = (state) => state.removeNomination;
 
 const Nominations = () => {
-	const [headerColor, setHeaderColor] = useState(COLORS.darkgreen);
+	const [headerColor, setHeaderColor] = useState('green.300');
 	const nominations = useStore((state) => state.nominations);
 	const removeNomination = useStore(removeEntryQuery);
 	const notify = () => toast.dark('Nominations complete! 🎉🎉🎉');
@@ -20,6 +20,8 @@ const Nominations = () => {
 		if (nominations.length === 5) {
 			notify();
 			setHeaderColor('blue.500');
+		} else {
+			setHeaderColor('green.300');
 		}
 	}, [nominations]);
 
